@@ -37,8 +37,8 @@ export default function Home() {
         <p></p>
         <ul>
           <li><strong>Piso1:</strong> {dataAseo.primerPiso ? dataAseo.primerPiso : <del>No hay</del>}</li>
-          <li><strong>Piso1:</strong> {dataAseo.segundoPiso ? dataAseo.segundoPiso : <del>No hay</del>}</li>
-          <li><strong>Piso1:</strong> {dataAseo.tercerPiso ? dataAseo.tercerPiso : <del>No hay</del>}</li>
+          <li><strong>Piso2:</strong> {dataAseo.segundoPiso ? dataAseo.segundoPiso : <del>No hay</del>}</li>
+          <li><strong>Piso3:</strong> {dataAseo.tercerPiso ? dataAseo.tercerPiso : <del>No hay</del>}</li>
           <li><strong>Sala:</strong> {dataAseo.sala ? dataAseo.sala : <del>No hay</del>}</li>
           <li><strong>Cocina:</strong> {dataAseo.cocina ? dataAseo.tercerPiso : <del>No hay</del>}</li>
         </ul>
