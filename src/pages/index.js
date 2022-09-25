@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import dayjs from "dayjs";
 import { getAllAseos } from "../utils/getAseos";
+import dayOfYear from "dayjs/plugin/dayOfYear"
+dayjs.extend(dayOfYear)
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -33,7 +35,7 @@ export default function Home() {
       <DatePicker selected={startDate} onChange={handleChangeDate} inline />
       <br />
       <details open style={{textAlign: 'left', maxWidth: '320px', margin: '0 auto'}}>
-        <summary>Aseos {`${startDate.getDay()}`}/{`${startDate.getMonth()}`}/{`${startDate.getFullYear()}`}</summary>
+        <summary>Aseos {`${dayjs(startDate).$D}`}/{`${startDate.getMonth() + 1}`}/{`${startDate.getFullYear()}`}</summary>
         <p></p>
         <ul>
           <li><strong>Piso1:</strong> {dataAseo.primerPiso ? dataAseo.primerPiso : <del>No hay</del>}</li>
