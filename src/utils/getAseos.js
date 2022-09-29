@@ -1,11 +1,10 @@
 import dayjs from "dayjs";
 
 const getDateDiff = (date, difference = 0) => {
-  const originDate = dayjs(0);
+  const originDate = dayjs("1969-12-31");
   const newDateWithDiff = date.add(difference, "days");
-  const daysDiff = newDateWithDiff.diff(originDate, "days", true);
-  const integerDaysDiff = Math.floor(daysDiff);
-  return integerDaysDiff;
+  const daysDiff = dayjs(`${newDateWithDiff.$y}-${newDateWithDiff.$M + 1}-${newDateWithDiff.$D}`).diff(originDate, "d");
+  return daysDiff;
 };
 
 export const getAseoPasilloPrimerPiso = (date, difference = 0) => {

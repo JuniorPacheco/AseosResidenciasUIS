@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import "../firebase/firebaseConfig";
 
 export default function Document() {
   return (

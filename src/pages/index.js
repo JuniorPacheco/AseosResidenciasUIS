@@ -6,8 +6,10 @@ import dayOfYear from "dayjs/plugin/dayOfYear"
 dayjs.extend(dayOfYear)
 
 import "react-datepicker/dist/react-datepicker.css";
+import { loginWithFirebase } from "../firebase/firebaseConfig";
+import { getRooms } from "../firebase/api";
 
-const dayDiff = 2;
+const dayDiff = 1;
 
 export default function Home() {
   const [startDate, setStartDate] = useState(new Date());
@@ -19,14 +21,28 @@ export default function Home() {
     cocina: 0,
   });
 
-  const handleChangeDate = (date) => {
+  const handleChangeDate = async (date) => {
     setStartDate(date);
     const newDataAseos = getAllAseos(dayjs(date), dayDiff);
     setDataAseo(newDataAseos);
   };
 
+  const handleClickInformation = async () => {
+    const info = await loginWithFirebase("junior.pacheco.356@gmail.com", "19971973")
+    console.log(info)
+  }
+
+  const handleGetInfo = async () => {
+    try {
+      const data = await getRooms()
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   useEffect(() => {
-    handleChangeDate(startDate)
+      handleChangeDate(startDate)
   }, [])
 
   return (
@@ -42,9 +58,11 @@ export default function Home() {
           <li><strong>Piso2:</strong> {dataAseo.segundoPiso ? dataAseo.segundoPiso : <del>No hay</del>}</li>
           <li><strong>Piso3:</strong> {dataAseo.tercerPiso ? dataAseo.tercerPiso : <del>No hay</del>}</li>
           <li><strong>Sala:</strong> {dataAseo.sala ? dataAseo.sala : <del>No hay</del>}</li>
-          <li><strong>Cocina:</strong> {dataAseo.cocina ? dataAseo.tercerPiso : <del>No hay</del>}</li>
+          <li><strong>Cocina:</strong> {dataAseo.cocina ? dataAseo.cocina : <del>No hay</del>}</li>
         </ul>
       </details>
+      {/* <button onClick={handleClickInformation}>Logear</button>
+      <button onClick={handleGetInfo}>Pedir informacion</button> */}
     </div>
   );
 }
